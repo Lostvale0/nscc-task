@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment Task - Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        
+        <header class="text-center mb-10 w-full max-w-4xl">
+            <div class="flex items-center justify-center space-x-4 mb-4">
+                <img 
+                    src="https://i.ibb.co/4RfYkNvW/image.png" 
+                    alt="Newton School Logo" 
+                    class="h-14 w-14 rounded-full"
+                >
+                <div>
+                     <p class="text-xl font-bold text-white text-left">Newton School</p>
+                     <p class="text-xl font-bold text-white text-left">Coding Club</p>
+                </div>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white">Recruitment Task</h1>
+            <p class="text-md text-gray-400 mt-2">Signup Form with Validation and Dashboard</p>
+        </header>
+
+        <main class="w-full flex flex-col items-center space-y-12">
+            <!-- Signup Form Card -->
+            <div class="bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-md">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Create Account</h2>
+                <form id="signupForm" class="space-y-6">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
+                        <input type="text" id="username" name="username" class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <p id="usernameError" class="text-red-400 text-xs mt-1 hidden">Username cannot be empty.</p>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                         <p id="emailError" class="text-red-400 text-xs mt-1 hidden">Please enter a valid email address.</p>
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+                        <input type="password" id="password" name="password" class="mt-1 block w-full bg-gray-700 border-gray-600 text-white rounded-md shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <p id="passwordError" class="text-red-400 text-xs mt-1 hidden">Password must be at least 6 characters long.</p>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-500 transition-colors">
+                            Sign Up
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- User Dashboard Card -->
+            <div class="bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-4xl">
+                 <h2 class="text-2xl font-bold text-white mb-6 text-center">User Dashboard</h2>
+                 <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-700">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Username</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Email</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Hashed Password (preview)</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody" class="bg-gray-800 divide-y divide-gray-700">
+                            <!-- User rows will be inserted here -->
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        const usernameError = document.getElementById('usernameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        
+        const userTableBody = document.getElementById('userTableBody');
+
+        // --- VALIDATION FUNCTIONS ---
+        const validateUsername = () => {
+            if (usernameInput.value.trim() === '') {
+                usernameError.classList.remove('hidden');
+                return false;
+            }
+            usernameError.classList.add('hidden');
+            return true;
+        };
+
+        const validateEmail = (email) => {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        };
+
+        const checkEmailFormat = () => {
+            if (!validateEmail(emailInput.value)) {
+                emailError.classList.remove('hidden');
+                return false;
+            }
+            emailError.classList.add('hidden');
+            return true;
+        };
+
+        const validatePassword = () => {
+            if (passwordInput.value.length < 6) {
+                passwordError.classList.remove('hidden');
+                return false;
+            }
+            passwordError.classList.add('hidden');
+            return true;
+        };
+        
+        // --- HASHING FUNCTION ---
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        // --- LOCALSTORAGE & TABLE RENDERING ---
+        const getUsers = () => {
+            return JSON.parse(localStorage.getItem('users')) || [];
+        };
+
+        const saveUsers = (users) => {
+            localStorage.setItem('users', JSON.stringify(users));
+        };
+
+        const renderTable = () => {
+            const users = getUsers();
+            userTableBody.innerHTML = '';
+            if (users.length === 0) {
+                 userTableBody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500">No users signed up yet.</td></tr>`;
+            } else {
+                users.forEach((user, index) => {
+                    const row = `
+                        <tr>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">${user.username}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">${user.email}</td>
+                            <td class="px-4 py-3 whitespace-nowrap font-mono text-sm text-gray-400">${user.password.substring(0, 10)}...</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm font-medium">
+                                <button onclick="deleteUser(${index})" class="text-red-500 hover:text-red-700 transition-colors">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    userTableBody.innerHTML += row;
+                });
+            }
+        };
+        
+        const deleteUser = (index) => {
+            let users = getUsers();
+            users.splice(index, 1);
+            saveUsers(users);
+            renderTable();
+        };
+
+        // --- FORM SUBMISSION ---
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const isUsernameValid = validateUsername();
+            const isEmailValid = checkEmailFormat();
+            const isPasswordValid = validatePassword();
+
+            if (isUsernameValid && isEmailValid && isPasswordValid) {
+                const hashedPassword = await hashPassword(passwordInput.value);
+                
+                const newUser = {
+                    username: usernameInput.value,
+                    email: emailInput.value,
+                    password: hashedPassword
+                };
+
+                let users = getUsers();
+                users.push(newUser);
+                saveUsers(users);
+                
+                signupForm.reset();
+                renderTable();
+            }
+        });
+
+        // --- INITIAL LOAD ---
+        document.addEventListener('DOMContentLoaded', renderTable);
+    </script>
+
+</body>
+</html>
+
