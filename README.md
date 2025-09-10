@@ -1,0 +1,23 @@
+# NSCC Technical Task Submissions
+
+This repository contains my completed submissions for the Newton School Coding Club (NSCC) technical recruitment tasks. Each task is organized in its own dedicated folder, complete with its own detailed `README.md` file, live deployment link, and source code.
+
+---
+
+## 📋 Tasks Overview
+
+| Task     | Description                                                                   | Link to Task Folder         |
+|----------|-------------------------------------------------------------------------------|-----------------------------|
+| **Task 01** | A fully functional signup form with validation and a user dashboard.          | [View Task 01](https://github.com/Lostvale0/nscc-task/tree/main/nscc-task-01)  |
+| **Task 02** | *(Upcoming task description will be here)*                                   | *(Link will be added)*      |
+
+---
+
+## 📬 Contact
+
+For any queries or feedback, feel free to reach out!
+scar@duck.com
+---
+
+> *This repository is maintained as part of the NSCC technical recruitment process.*
+
