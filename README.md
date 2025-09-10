@@ -9,16 +9,22 @@ This repository contains my completed submissions for the Newton School Coding C
 | Task     | Description                                                                   | Link to Task Folder         |
 |----------|-------------------------------------------------------------------------------|-----------------------------|
 | **Task 01** | A fully functional signup form with validation and a user dashboard.          | [View Task 01](https://github.com/Lostvale0/nscc-task/tree/main/nscc-task-01)  |
-| **Task 02** | *(Upcoming task description will be here)*| *(Link will be added)*      |
-
+| **Task 02** | Create a basic quiz application.                                              | [View Task 02](https://github.com/Lostvale0/nscc-task/tree/main/nscc-task-02)          |
 ---
 ## 🚀 Live Deployment
 
 - Task 01: [Click Here](https://lostvale0.github.io/nscc-task/nscc-task-01/)
+- Task 02: [Click Here](https://lostvale0.github.io/nscc-task/nscc-task-02/)
  
 ## 📬 Contact
 
 For any queries or feedback, feel free to reach out!
 scar@duck.com
+
+
+<p align="center">
+ ⚠️ <span style="color:red"><u>These tasks were generated with the help of AI</u></span>
+</p>
+
 
 
