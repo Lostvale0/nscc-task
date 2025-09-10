@@ -22,9 +22,6 @@ For any queries or feedback, feel free to reach out!
 scar@duck.com
 
 
-<p align="center">
- ⚠️ <span style="color:red"><u>These tasks were generated with the help of AI</u></span>
-</p>
 
 
 
